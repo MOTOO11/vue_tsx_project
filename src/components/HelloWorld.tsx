@@ -4,8 +4,9 @@ import { ElementAttrs } from "vue-tsx-support/types/base";
 import { AnchorHTMLAttributes } from "vue-tsx-support/types/dom";
 import LogoSvg from "@/components/LogoSvg"
 import MyComponent from "@/components/MyComponent";
+import VuetifyMixin from "@/mixin/vuetify"
 
-export default TSX.componentFactory.create({
+export default TSX.componentFactory.mixin(VuetifyMixin).create({
   name: "HelloWorld",
   props: {
     msg: {

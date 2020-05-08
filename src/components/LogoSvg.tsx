@@ -2,8 +2,9 @@
 import * as TSX from "vue-tsx-support";
 import { VNode } from "vue/types/umd";
 import vuetifyMixin from "@/mixin/vuetify";
-interface Events {
-  onClick: () => void;
+abstract class Events {
+  abstract onClick?: () => void;
+  public static ON_CLICK_EVENT_NAME = "click";
 }
 
 export default TSX.componentFactoryOf<Events>().mixin(vuetifyMixin).create({
@@ -19,7 +20,7 @@ export default TSX.componentFactoryOf<Events>().mixin(vuetifyMixin).create({
         height="200"
         gradient="to top right, rgba(100,115,201,.33), rgba(25,32,72,.7)"
         onClick={() => {
-          this.$emit("click");
+          this.$emit(Events.ON_CLICK_EVENT_NAME);
         }}
       />
     );

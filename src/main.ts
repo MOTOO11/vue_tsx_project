@@ -5,7 +5,7 @@ import store from "./store";
 import vuetify from "./plugins/vuetify";
 
 import VuetifyMixin from "@/mixin/vuetify"
-Vue.mixin(VuetifyMixin);
+// Vue.mixin(VuetifyMixin);
 
 Vue.config.productionTip = false;
 
