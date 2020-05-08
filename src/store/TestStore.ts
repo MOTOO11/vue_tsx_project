@@ -5,7 +5,8 @@ import * as Covid from "@/Entity/Covid"
 
 export interface CounterState {
   count: number;
-  prefecture: Covid.RootObject[];
+  prefecture: Covid.Prefecture[];
+  total: Covid.Total;
 }
 
 const testStore = defineModule({
@@ -13,7 +14,8 @@ const testStore = defineModule({
   state: (): CounterState => {
     return {
       count: 0,
-      prefecture: []
+      prefecture: [],
+      total: new Covid.Total()
     };
   },
   mutations: {
@@ -21,8 +23,11 @@ const testStore = defineModule({
       state.count += 1;
       state.count += more;
     },
-    SET_PREFECTURE(state, message: Covid.RootObject[]) {
+    SET_PREFECTURE(state, message: Covid.Prefecture[]) {
       state.prefecture = message;
+    },
+    SET_TOTAL(state, total: Covid.Total) {
+      state.total = total;
     }
   },
   actions: {
@@ -31,12 +36,12 @@ const testStore = defineModule({
       commit.INCREMENT(10);
       return await rootDispatch.Counter.increment();
     },
-    async loadCovid19(context) {
+    async fetchPrefectures(context) {
       const { commit, state, rootDispatch } = constantActionContext(context); // rootCommitなどもあります
       const result = await Axios.get('https://covid19-japan-web-api.now.sh/api/v1/prefectures');
-      var msg = result.data as Covid.RootObject[];
+      var msg = result.data as Covid.Prefecture[];
       // var dd = { method: "get", mode: "cors" } as RequestInit;
-      const res2 = await (await fetch('https://covid19-japan-web-api.now.sh/api/v1/prefectures')).json() as Covid.RootObject[];
+      const res2 = await (await fetch('https://covid19-japan-web-api.now.sh/api/v1/prefectures')).json() as Covid.Prefecture[];
 
       var sort = res2.sort((a, b) => {
         if (a.deaths < b.deaths) return -1;
@@ -45,6 +50,15 @@ const testStore = defineModule({
       });
       console.log(sort);
       commit.SET_PREFECTURE(sort);
+    },
+    async getTotal(context) {
+      const { commit, state, rootDispatch } = constantActionContext(context); // rootCommitなどもあります
+      const result = await Axios.get('https://covid19-japan-web-api.now.sh/api/v1/total');
+      var msg = result.data as Covid.Total;
+      // var dd = { method: "get", mode: "cors" } as RequestInit;
+      const res2 = await (await fetch('https://covid19-japan-web-api.now.sh/api/v1/total')).json() as Covid.Total;
+      console.log(res2);
+      commit.SET_TOTAL(res2);
     }
   },
   getters: {

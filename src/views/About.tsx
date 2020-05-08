@@ -1,7 +1,8 @@
 import Vue from "vue";
 import * as TSX from "vue-tsx-support";
+import VuetifyMixin from "@/mixin/vuetify"
 
-export default TSX.component({
+export default TSX.componentFactory.mixin(VuetifyMixin).create({
   name: "about",
   render() {
     var list = [];
@@ -27,10 +28,11 @@ export default TSX.component({
         </v-data-table >
 
         <h1 onClick={this.increment}>This is an about page</h1>
-        <h1 onClick={this.loadCovid19}>This is an about page</h1>
+        <h1 onClick={this.fetchData}>This is an about page</h1>
         <div>this is {this.count} @1</div>
         <div>this is {this.count2} @2</div>
         <div>this is {this.count3} @3</div>
+        <div>this is {this.total.hospitalize} @3</div>
         <div>
           <ul>
             <li>{list}</li>
@@ -72,18 +74,22 @@ export default TSX.component({
     },
     prefecture() {
       return this.$store.direct.state.Const.prefecture;
+    },
+    total() {
+      return this.$store.direct.state.Const.total;
     }
   },
   async mounted() {
-    await this.loadCovid19();
+    await this.fetchData();
   },
   methods: {
     async increment() {
       var result = await this.$store.direct.dispatch.Const.increment();
       console.log(result);
     },
-    async loadCovid19() {
-      await this.$store.direct.dispatch.Const.loadCovid19();
+    async fetchData() {
+      await this.$store.direct.dispatch.Const.fetchPrefectures();
+      await this.$store.direct.dispatch.Const.getTotal();
     }
   }
 });

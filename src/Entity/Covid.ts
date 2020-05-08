@@ -4,7 +4,7 @@ export interface LastUpdated {
     pcr_date: number;
 }
 
-export interface RootObject {
+export interface Prefecture {
     id: number;
     name_ja: string;
     name_en: string;
@@ -15,4 +15,18 @@ export interface RootObject {
     deaths: number;
     pcr: number;
 }
-
+export class Total {
+    date!: number;
+    pcr!: number;
+    positive!: number;
+    symptom!: number;
+    symptomless!: number;
+    symtomConfirming!: number;
+    hospitalize!: number;
+    mild!: number;
+    severe!: number;
+    confirming!: number;
+    waiting!: number;
+    discharge!: number;
+    death!: number;
+}
