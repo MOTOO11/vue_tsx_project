@@ -8,7 +8,7 @@ export interface CounterState {
   prefecture: Covid.RootObject[];
 }
 
-const constant = defineModule({
+const testStore = defineModule({
   namespaced: true,
   state: (): CounterState => {
     return {
@@ -21,14 +21,15 @@ const constant = defineModule({
       state.count += 1;
       state.count += more;
     },
-    SET_MESSAGES(state, message: Covid.RootObject[]) {
+    SET_PREFECTURE(state, message: Covid.RootObject[]) {
       state.prefecture = message;
     }
   },
   actions: {
     increment(context): number {
-      const { commit, state } = constantActionContext(context); // rootCommitなどもあります
+      const { commit, state, rootDispatch } = constantActionContext(context); // rootCommitなどもあります
       commit.INCREMENT(10);
+      rootDispatch.Counter.increment();
       return state.count;
     },
     async loadCovid19(context) {
@@ -44,7 +45,7 @@ const constant = defineModule({
         return 0;
       });
       console.log(sort);
-      commit.SET_MESSAGES(sort);
+      commit.SET_PREFECTURE(sort);
     }
   },
   getters: {
@@ -63,13 +64,13 @@ const constant = defineModule({
   },
 });
 
-export default constant;
+export default testStore;
 
 export const constantActionContext = (context: any) =>
-  Context.moduleActionContext(context, constant);
+  Context.moduleActionContext(context, testStore);
 export const constantRootContext = (context: any) =>
   Context.rootActionContext(context);
 
 export const constantGetterContext = (args: [CounterState, any, any, any]) => {
-  return Context.moduleGetterContext(args, constant);
+  return Context.moduleGetterContext(args, testStore);
 };

@@ -22,14 +22,15 @@ export default component({
           class="elevation-1"
         >
           <template slot={"top"}>
+            <v-switch v-model={this.singleSelect} label="Single select" class="pa-3"></v-switch>
           </template>
         </v-data-table >
-        <v-switch v-model={this.singleSelect} label="Single select" class="pa-3"></v-switch>
 
         <h1 onClick={this.increment}>This is an about page</h1>
         <h1 onClick={this.loadCovid19}>This is an about page</h1>
         <div>this is {this.count} @1</div>
         <div>this is {this.count2} @2</div>
+        <div>this is {this.count3} @3</div>
         <div>
           <ul>
             <li>{list}</li>
@@ -65,6 +66,9 @@ export default component({
     },
     count2() {
       return this.$store.direct.state.Const.count;
+    },
+    count3() {
+      return this.$store.direct.state.Counter.count;
     },
     prefecture() {
       return this.$store.direct.state.Const.prefecture;

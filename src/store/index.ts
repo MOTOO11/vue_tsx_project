@@ -1,7 +1,8 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import { createDirectStore } from "direct-vuex";
-import Const from "./Const";
+import TestStore from "./TestStore";
+import Counter from "./Counter";
 
 Vue.use(Vuex);
 
@@ -12,7 +13,7 @@ const {
   rootGetterContext,
   moduleGetterContext,
 } = createDirectStore({
-  modules: { Const },
+  modules: { Const: TestStore, Counter },
 });
 
 // Export the direct-store instead of the classic Vuex store.
