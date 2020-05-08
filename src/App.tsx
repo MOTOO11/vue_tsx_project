@@ -1,9 +1,9 @@
 import Vue from "vue";
 import HelloWorld from "./components/HelloWorld";
-import { component } from "vue-tsx-support";
+import * as TSX from "vue-tsx-support";
 import VuetifyMixin from "@/mixin/vuetify";
 
-export default component({
+export default TSX.component({
   name: "App",
   mixins: [VuetifyMixin],
   components: {

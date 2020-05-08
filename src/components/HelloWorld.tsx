@@ -1,16 +1,14 @@
 import Vue from "vue";
-import LogoPng from "@/components/LogoPng";
-import { component, componentFactoryOf } from "vue-tsx-support";
+import * as TSX from "vue-tsx-support";
 import { ElementAttrs } from "vue-tsx-support/types/base";
 import { AnchorHTMLAttributes } from "vue-tsx-support/types/dom";
-import VuetifyMixin from "@/mixin/vuetify";
 import LogoSvg from "@/components/LogoSvg"
 import MyComponent from "@/components/MyComponent";
+import LogoPng from "@/components/LogoPng";
 
-export default component({
+export default TSX.component({
   name: "HelloWorld",
   components: { LogoPng, LogoSvg, MyComponent },
-  mixins: [VuetifyMixin],
   props: {
     msg: {
       type: String,

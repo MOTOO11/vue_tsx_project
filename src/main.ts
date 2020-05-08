@@ -3,11 +3,12 @@ import App from "./App";
 import router from "./router";
 import store from "./store";
 import vuetify from "./plugins/vuetify";
-import MyComponent from "@/components/MyComponent";
+
+import VuetifyMixin from "@/mixin/vuetify"
+Vue.mixin(VuetifyMixin);
 
 Vue.config.productionTip = false;
 
-Vue.component("MyComponent", MyComponent);
 new Vue({
   router,
   store: store.original,

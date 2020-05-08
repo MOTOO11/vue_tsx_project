@@ -1,7 +1,7 @@
 import Vue from "vue";
-import { component } from "vue-tsx-support";
+import * as TSX from "vue-tsx-support";
 
-export default component({
+export default TSX.component({
   name: "about",
   render() {
     var list = [];

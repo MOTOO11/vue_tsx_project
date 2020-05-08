@@ -1,13 +1,13 @@
 // @ is an alias to /src
-import * as tsx from "vue-tsx-support";
+import * as TSX from "vue-tsx-support";
 import { VNode } from "vue/types/umd";
 import vuetifyMixin from "@/mixin/vuetify";
 interface Events {
   onClick: () => void;
 }
 
-export default tsx.componentFactoryOf<Events>().create({
-  name: "logo_svg",
+export default TSX.componentFactoryOf<Events>().create({
+  name: "logoSvg",
   mixins: [vuetifyMixin],
   components: {
   },

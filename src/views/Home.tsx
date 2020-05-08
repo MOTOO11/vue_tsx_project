@@ -1,14 +1,13 @@
 // @ is an alias to /src
 import HelloWorld from "@/components/HelloWorld";
-import { component } from "vue-tsx-support";
+import * as TSX from "vue-tsx-support";
 import logoSvg from "@/components/LogoSvg"
 import logoPng from "@/components/LogoPng"
 
-export default component({
+export default TSX.component({
   name: "Home",
   components: {
-    HelloWorld,
-    logoSvg, logoPng
+    HelloWorld, logoPng
   },
   render() {
     return (
