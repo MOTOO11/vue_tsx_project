@@ -13,6 +13,26 @@ export default TSX.componentFactory.mixin(VuetifyMixin).create({
     }
     return (
       <div class="about">
+        <v-dialog
+          v-model={this.showModal}
+          // hide-overlay
+          persistent
+          width="300"
+        >
+          <v-card
+            color="primary"
+            dark
+          >
+            <v-card-text>
+              データを取得しています
+          <v-progress-linear
+                indeterminate
+                color="white"
+                class="mb-0"
+              ></v-progress-linear>
+            </v-card-text>
+          </v-card>
+        </v-dialog>
         <v-data-table dense
           v-model={this.selected}
           headers={this.headers}
@@ -46,6 +66,7 @@ export default TSX.componentFactory.mixin(VuetifyMixin).create({
     return {
       singleSelect: false,
       selected: [],
+      showModal: true,
       aaa: "about page",
       bbb: 1,
       headers: [
@@ -81,6 +102,7 @@ export default TSX.componentFactory.mixin(VuetifyMixin).create({
   },
   async mounted() {
     await this.fetchData();
+    this.showModal = false;
   },
   methods: {
     async increment() {

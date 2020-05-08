@@ -12,6 +12,10 @@ import {
   VRow,
   VDataTable,
   VSwitch,
+  VDialog,
+  VCard,
+  VCardText,
+  VProgressLinear,
 } from "vuetify/lib";
 
 export default component({
@@ -27,6 +31,10 @@ export default component({
     "v-icon": VIcon,
     "v-content": VContent,
     "v-data-table": VDataTable,
-    "v-switch": VSwitch
+    "v-switch": VSwitch,
+    "v-dialog": VDialog,
+    "v-card": VCard,
+    "v-card-text": VCardText,
+    "v-progress-linear": VProgressLinear
   },
 });
