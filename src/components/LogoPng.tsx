@@ -1,9 +1,8 @@
-import { component } from "vue-tsx-support";
+import * as TSX from "vue-tsx-support";
 import VuetifyMixin from "@/mixin/vuetify";
 
-export default component({
+export default TSX.componentFactory.mixin(VuetifyMixin).create({
   name: "logoPng",
-  mixins: [VuetifyMixin],
   components: {},
   render() {
     return <v-img src={this.logoSrc} class="my-3" contain height="200" />;

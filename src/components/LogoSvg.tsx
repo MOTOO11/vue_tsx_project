@@ -6,9 +6,8 @@ interface Events {
   onClick: () => void;
 }
 
-export default TSX.componentFactoryOf<Events>().create({
+export default TSX.componentFactoryOf<Events>().mixin(vuetifyMixin).create({
   name: "logoSvg",
-  mixins: [vuetifyMixin],
   components: {
   },
   render(): VNode {

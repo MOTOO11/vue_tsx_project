@@ -4,11 +4,9 @@ import { ElementAttrs } from "vue-tsx-support/types/base";
 import { AnchorHTMLAttributes } from "vue-tsx-support/types/dom";
 import LogoSvg from "@/components/LogoSvg"
 import MyComponent from "@/components/MyComponent";
-import LogoPng from "@/components/LogoPng";
 
-export default TSX.component({
+export default TSX.componentFactory.create({
   name: "HelloWorld",
-  components: { LogoPng, LogoSvg, MyComponent },
   props: {
     msg: {
       type: String,
