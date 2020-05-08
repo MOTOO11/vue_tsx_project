@@ -4,10 +4,12 @@ import { component, componentFactoryOf } from "vue-tsx-support";
 import { ElementAttrs } from "vue-tsx-support/types/base";
 import { AnchorHTMLAttributes } from "vue-tsx-support/types/dom";
 import VuetifyMixin from "@/mixin/vuetify";
+import LogoSvg from "@/components/LogoSvg"
+import MyComponent from "@/components/MyComponent";
 
 export default component({
   name: "HelloWorld",
-  components: { LogoPng },
+  components: { LogoPng, LogoSvg, MyComponent },
   mixins: [VuetifyMixin],
   props: {
     msg: {
@@ -47,7 +49,11 @@ export default component({
       <v-container>
         <v-row class="text-center">
           <v-col cols="12">
-            <logo-svg
+            <MyComponent
+              onOk={() => console.log("ok")}
+              onError={p => console.log("ng", p.code, p.detail)}
+            />
+            <LogoSvg
               onClick={() => {
                 this.increment();
               }}
