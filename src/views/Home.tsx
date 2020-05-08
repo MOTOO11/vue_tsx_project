@@ -1,11 +1,9 @@
 // @ is an alias to /src
 import HelloWorld from "@/components/HelloWorld";
 import { component } from "vue-tsx-support";
-import VuetifyMixin from "@/mixin/vuetify";
 
 export default component({
   name: "Home",
-  mixins: [VuetifyMixin],
   components: {
     HelloWorld,
   },
@@ -18,8 +16,5 @@ export default component({
     );
   },
   computed: {
-    logoSrc() {
-      return this.$store.direct.getters.Const.logoSrcPng;
-    },
   },
 });

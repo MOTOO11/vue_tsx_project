@@ -65,7 +65,7 @@ export default component({
       return this.$store.direct.state.Const.count;
     },
     count2() {
-      return this.$store.direct.state.Const.count;
+      return this.$store.direct.getters.Const.logoSrcSvg;
     },
     count3() {
       return this.$store.direct.state.Counter.count;
@@ -78,11 +78,9 @@ export default component({
     await this.loadCovid19();
   },
   methods: {
-    increment() {
-      this.$store.direct.dispatch.Const.increment();
-    },
-    increment2() {
-      this.$store.direct.dispatch.Const.increment();
+    async increment() {
+      var result = await this.$store.direct.dispatch.Const.increment();
+      console.log(result);
     },
     async loadCovid19() {
       await this.$store.direct.dispatch.Const.loadCovid19();

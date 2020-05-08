@@ -26,11 +26,10 @@ const testStore = defineModule({
     }
   },
   actions: {
-    increment(context): number {
+    async  increment(context): Promise<number> {
       const { commit, state, rootDispatch } = constantActionContext(context); // rootCommitなどもあります
       commit.INCREMENT(10);
-      rootDispatch.Counter.increment();
-      return state.count;
+      return await rootDispatch.Counter.increment();
     },
     async loadCovid19(context) {
       const { commit, state, rootDispatch } = constantActionContext(context); // rootCommitなどもあります

@@ -7,9 +7,10 @@ import GeneralMixin from "@/mixin/general";
 
 Vue.config.productionTip = false;
 Vue.mixin(GeneralMixin);
+
 new Vue({
   router,
   store: store.original,
   vuetify,
-  render: (h) => h(App),
+  render: h => h(App)
 }).$mount("#app");

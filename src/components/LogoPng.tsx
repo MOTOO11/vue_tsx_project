@@ -3,7 +3,6 @@ import VuetifyMixin from "@/mixin/vuetify";
 
 export default component({
   name: "logoPng",
-  mixins: [VuetifyMixin],
   components: {},
   render() {
     return <v-img src={this.logoSrc} class="my-3" contain height="200" />;
