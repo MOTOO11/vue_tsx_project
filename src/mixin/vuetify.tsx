@@ -16,6 +16,7 @@ import {
   VCard,
   VCardText,
   VProgressLinear,
+  VOverflowBtn,
 } from "vuetify/lib";
 
 export default component({
@@ -35,6 +36,7 @@ export default component({
     "v-dialog": VDialog,
     "v-card": VCard,
     "v-card-text": VCardText,
-    "v-progress-linear": VProgressLinear
+    "v-progress-linear": VProgressLinear,
+    "v-overflow-btn": VOverflowBtn
   },
 });

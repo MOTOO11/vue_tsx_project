@@ -9,7 +9,7 @@ export default TSX.componentFactory.mixin(VuetifyMixin).create({
   },
   computed: {
     logoSrc() {
-      return this.$store.direct.getters.Const.logoSrcPng;
+      return this.$store.direct.getters.Covid19ApiStore.logoSrcPng;
     },
   },
 });

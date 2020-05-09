@@ -27,7 +27,7 @@ export default TSX.componentFactoryOf<Events>().mixin(vuetifyMixin).create({
   },
   computed: {
     logoSrc(): String {
-      return this.$store.direct.getters.Const.logoSrcSvg;
+      return this.$store.direct.getters.Covid19ApiStore.logoSrcSvg;
     },
   },
 });

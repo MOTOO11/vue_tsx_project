@@ -13,7 +13,7 @@ const {
   rootGetterContext,
   moduleGetterContext,
 } = createDirectStore({
-  modules: { Const: TestStore, Counter },
+  modules: { Covid19ApiStore: TestStore, Counter },
 });
 
 // Export the direct-store instead of the classic Vuex store.

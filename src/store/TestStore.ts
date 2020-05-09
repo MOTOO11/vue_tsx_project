@@ -7,6 +7,7 @@ export interface CounterState {
   count: number;
   prefecture: Covid.Prefecture[];
   total: Covid.Total;
+  positives: Covid.Positive[];
 }
 
 const testStore = defineModule({
@@ -15,7 +16,8 @@ const testStore = defineModule({
     return {
       count: 0,
       prefecture: [],
-      total: new Covid.Total()
+      total: new Covid.Total(),
+      positives: []
     };
   },
   mutations: {
@@ -28,6 +30,9 @@ const testStore = defineModule({
     },
     SET_TOTAL(state, total: Covid.Total) {
       state.total = total;
+    },
+    SET_POSITIVES(state, positives: Covid.Positive[]) {
+      state.positives = positives;
     }
   },
   actions: {
@@ -38,8 +43,8 @@ const testStore = defineModule({
     },
     async fetchPrefectures(context) {
       const { commit, state, rootDispatch } = constantActionContext(context); // rootCommitなどもあります
-      const result = await Axios.get('https://covid19-japan-web-api.now.sh/api/v1/prefectures');
-      var msg = result.data as Covid.Prefecture[];
+      // const result = await Axios.get('https://covid19-japan-web-api.now.sh/api/v1/prefectures');
+      // var msg = result.data as Covid.Prefecture[];
       // var dd = { method: "get", mode: "cors" } as RequestInit;
       const res2 = await (await fetch('https://covid19-japan-web-api.now.sh/api/v1/prefectures')).json() as Covid.Prefecture[];
 
@@ -53,12 +58,26 @@ const testStore = defineModule({
     },
     async getTotal(context) {
       const { commit, state, rootDispatch } = constantActionContext(context); // rootCommitなどもあります
-      const result = await Axios.get('https://covid19-japan-web-api.now.sh/api/v1/total');
-      var msg = result.data as Covid.Total;
+      // const result = await Axios.get('https://covid19-japan-web-api.now.sh/api/v1/total');
+      // var msg = result.data as Covid.Total;
       // var dd = { method: "get", mode: "cors" } as RequestInit;
       const res2 = await (await fetch('https://covid19-japan-web-api.now.sh/api/v1/total')).json() as Covid.Total;
       console.log(res2);
       commit.SET_TOTAL(res2);
+    },
+    async getPositives(context, prefecture: string) {
+      const { commit, state, rootDispatch } = constantActionContext(context); // rootCommitなどもあります
+      // const result = await Axios.get('https://covid19-japan-web-api.now.sh/api/v1/positives');
+      // var msg = result.data as Covid.Total;
+      // var dd = { method: "get", mode: "cors" } as RequestInit;
+      const params = new URLSearchParams();
+      params.set('prefecture', prefecture);
+      fetch('/get_with_params?' + params.toString());
+      const res2 = await (await fetch('https://covid19-japan-web-api.now.sh/api/v1/positives?'
+        + params.toString())).json() as Covid.Positive[];
+      console.log(res2);
+      commit.SET_POSITIVES(res2);
+      return res2;
     }
   },
   getters: {

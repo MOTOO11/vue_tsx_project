@@ -94,12 +94,12 @@ export default TSX.componentFactory.mixin(VuetifyMixin).create({
   },
   computed: {
     counter() {
-      return this.$store.direct.state.Const.count;
+      return this.$store.direct.state.Covid19ApiStore.count;
     },
   },
   methods: {
     increment() {
-      this.$store.direct.dispatch.Const.increment();
+      this.$store.direct.dispatch.Covid19ApiStore.increment();
     },
   },
   data: () => ({

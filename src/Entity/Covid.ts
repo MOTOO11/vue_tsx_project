@@ -30,3 +30,34 @@ export class Total {
     discharge!: number;
     death!: number;
 }
+
+export class PositivesLocalArchieve {
+    positive: Positive[] = [];
+    lastAccessDate: Date = new Date();
+    name: string = ""
+    constructor(positive: string) {
+
+    }
+}
+
+export class Positive {
+    code!: string;
+    announcement_date!: string;
+    src!: string;
+    prefecture!: string;
+    residence_prefecture!: string;
+    age!: string;
+    gender!: string;
+    attribute!: string;
+    prefecture_number!: string;
+    travel_or_contact!: string;
+    detail!: string;
+    id!: string;
+    diagnosis_date!: string;
+    onset!: string;
+    symptom!: string;
+    death_or_discharge_date!: string;
+    comment!: string;
+    outcome!: string;
+    outcome_src!: string;
+}
