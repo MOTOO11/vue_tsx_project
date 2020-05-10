@@ -14,10 +14,10 @@ export default TSX.componentFactory.mixin(VuetifyMixin).create({
     }
     return (
       <div >
-        <h1 onClick={this.increment}>This is an about page</h1>
-        <h1 onClick={this.fetchData}>This is an about page</h1>
+        <h1 onClick={this.increment}>Increment</h1>
+        <h1 onClick={this.fetchData}>Fetch</h1>
         <div>this is {this.count} @1</div>
-        <div>this is {this.count2} @2</div>
+        <div>this is {this.logoSrcSvg} @2</div>
         <div>this is {this.count3} @3</div>
         <div>this is {this.total.hospitalize} @3</div>
         <PositivesComponent
@@ -90,7 +90,7 @@ export default TSX.componentFactory.mixin(VuetifyMixin).create({
     count() {
       return this.$store.direct.state.Covid19ApiStore.count;
     },
-    count2() {
+    logoSrcSvg() {
       return this.$store.direct.getters.Covid19ApiStore.logoSrcSvg;
     },
     count3() {
@@ -112,12 +112,13 @@ export default TSX.componentFactory.mixin(VuetifyMixin).create({
       var result = await this.$store.direct.dispatch.Covid19ApiStore.increment();
     },
     async fetchData() {
+      this.setModal(true);
       await this.$store.direct.dispatch.Covid19ApiStore.fetchPrefectures();
       await this.$store.direct.dispatch.Covid19ApiStore.getTotal();
+      this.setModal(false);
     },
     setModal(value: boolean) {
       this.showModal = value;
-
     }
   }
 });
