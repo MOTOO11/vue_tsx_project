@@ -34,13 +34,10 @@ const testStore = defineModule({
     ADD_POSITIVES(state, payload: {
       name: string, positives: Covid.Positive[]
     }) {
-      console.log("before", state.positivesLocalAchievements);
-
       var value = state.positivesLocalAchievements.find(e => e.name == name)
         ?? new Covid.PositivesLocalAchievement(payload.name, payload.positives);
       state.positivesLocalAchievements = state.positivesLocalAchievements
         .filter(e => e.name != payload.name).concat(value);
-      console.log("after", state.positivesLocalAchievements);
     }
   },
   actions: {
@@ -61,7 +58,6 @@ const testStore = defineModule({
         if (a.deaths > b.deaths) return 1;
         return 0;
       });
-      console.log(sort);
       commit.SET_PREFECTURE(sort);
     },
     async getTotal(context) {
@@ -70,7 +66,6 @@ const testStore = defineModule({
       // var msg = result.data as Covid.Total;
       // var dd = { method: "get", mode: "cors" } as RequestInit;
       const res2 = await (await fetch('https://covid19-japan-web-api.now.sh/api/v1/total')).json() as Covid.Total;
-      console.log(res2);
       commit.SET_TOTAL(res2);
     },
     async getPositives(context, prefecture: string) {
@@ -79,7 +74,6 @@ const testStore = defineModule({
       // var msg = result.data as Covid.Total;
       // var dd = { method: "get", mode: "cors" } as RequestInit;
       var find = state.positivesLocalAchievements.find(e => e.name == prefecture);
-      console.log("find:" + prefecture, find);
       if (find != null) {//&& find.compare()
         // return new Promise(() => {
         //   return find;
@@ -92,7 +86,6 @@ const testStore = defineModule({
         (await fetch('https://covid19-japan-web-api.now.sh/api/v1/positives?'
           + params.toString())
         ).json() as Covid.Positive[];
-      console.log(result);
       commit.ADD_POSITIVES({ name: prefecture, positives: result });
       // return new Promise(() => {
       //   return result;

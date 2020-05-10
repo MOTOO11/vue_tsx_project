@@ -105,12 +105,11 @@ export default TSX.componentFactory.mixin(VuetifyMixin).create({
   },
   async mounted() {
     await this.fetchData();
-    this.showModal = false;
+    this.setModal(false);
   },
   methods: {
     async increment() {
       var result = await this.$store.direct.dispatch.Covid19ApiStore.increment();
-      console.log(result);
     },
     async fetchData() {
       await this.$store.direct.dispatch.Covid19ApiStore.fetchPrefectures();
@@ -118,7 +117,6 @@ export default TSX.componentFactory.mixin(VuetifyMixin).create({
     },
     setModal(value: boolean) {
       this.showModal = value;
-      console.log(value);
 
     }
   }

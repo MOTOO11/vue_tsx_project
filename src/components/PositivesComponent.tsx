@@ -17,19 +17,13 @@ export default TSX.componentFactoryOf<Events>().mixin(VuetifyMixin).create({
   },
   data: () => {
     return {
-      positives: [] as Covid.Positive[],
       selectedPrefecture: "青森県",
     }
   },
   methods: {
     async fetchData() {
-      console.log(true);
       this.$emit(Events.ON_LOADING_EVENT_NAME, true);
       await this.$store.direct.dispatch.Covid19ApiStore.getPositives(this.selectedPrefecture);
-      this.positives = this.$store.direct.state.Covid19ApiStore.positivesLocalAchievements.find(e => e.name == this.selectedPrefecture)?.positives ?? [];
-      console.log(this.positives);
-
-      console.log(false);
       this.$emit(Events.ON_LOADING_EVENT_NAME, false);
     }
   },
@@ -46,6 +40,9 @@ export default TSX.componentFactoryOf<Events>().mixin(VuetifyMixin).create({
     </div>);
   },
   computed: {
+    positives() {
+      return this.$store.direct.state.Covid19ApiStore.positivesLocalAchievements.find(e => e.name == this.selectedPrefecture)?.positives ?? [];
+    },
     PREFECTURES() {
       return [
         '北海道',
