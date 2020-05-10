@@ -31,12 +31,19 @@ export class Total {
     death!: number;
 }
 
-export class PositivesLocalArchieve {
-    positive: Positive[] = [];
+export class PositivesLocalAchievement {
+    positives: Positive[] = [];
     lastAccessDate: Date = new Date();
     name: string = ""
-    constructor(positive: string) {
+    constructor(name: string, positives: Positive[]) {
+        this.name = name;
+        this.positives = positives;
+        this.lastAccessDate = new Date();
+    }
 
+    //新規取得が必要か判定
+    public compare(): boolean {
+        return this.lastAccessDate.getMilliseconds() < new Date().getMilliseconds();
     }
 }
 

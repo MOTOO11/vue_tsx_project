@@ -11,7 +11,7 @@ export default TSX.componentFactory.mixin(VuetifyMixin).create({
   data: () => {
     return {
       positives: [] as Covid.Positive[],
-      selectedPrefecture: "東京都",
+      selectedPrefecture: "青森県",
     }
   },
   methods: {

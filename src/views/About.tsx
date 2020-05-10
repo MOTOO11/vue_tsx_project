@@ -114,7 +114,6 @@ export default TSX.componentFactory.mixin(VuetifyMixin).create({
     async fetchData() {
       await this.$store.direct.dispatch.Covid19ApiStore.fetchPrefectures();
       await this.$store.direct.dispatch.Covid19ApiStore.getTotal();
-      var positives = await this.$store.direct.dispatch.Covid19ApiStore.getPositives(this.selectedPrefecture);
     }
   }
 });
