@@ -105,17 +105,21 @@ export default TSX.componentFactory.mixin(VuetifyMixin).create({
   },
   async mounted() {
     await this.fetchData();
-    this.setModal(false);
   },
   methods: {
     async increment() {
       var result = await this.$store.direct.dispatch.Covid19ApiStore.increment();
     },
-    async fetchData() {
+    async modal(callback: () => {}) {
       this.setModal(true);
-      await this.$store.direct.dispatch.Covid19ApiStore.fetchPrefectures();
-      await this.$store.direct.dispatch.Covid19ApiStore.getTotal();
+      await callback();
       this.setModal(false);
+    },
+    async fetchData() {
+      await this.modal(async () => {
+        await this.$store.direct.dispatch.Covid19ApiStore.fetchPrefectures();
+        await this.$store.direct.dispatch.Covid19ApiStore.getTotal();
+      });
     },
     setModal(value: boolean) {
       this.showModal = value;
