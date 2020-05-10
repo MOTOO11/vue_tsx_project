@@ -73,7 +73,7 @@ const testStore = defineModule({
       console.log(res2);
       commit.SET_TOTAL(res2);
     },
-    async getPositives(context, prefecture: string): Promise<Covid.Positive[]> {
+    async getPositives(context, prefecture: string) {
       const { commit, state, rootDispatch } = constantActionContext(context); // rootCommitなどもあります
       // const result = await Axios.get('https://covid19-japan-web-api.now.sh/api/v1/positives');
       // var msg = result.data as Covid.Total;
@@ -81,19 +81,22 @@ const testStore = defineModule({
       var find = state.positivesLocalAchievements.find(e => e.name == prefecture);
       console.log("find:" + prefecture, find);
       if (find != null) {//&& find.compare()
-        return new Promise(() => {
-          return find;
-        });
+        // return new Promise(() => {
+        //   return find;
+        // });
+        return;
       }
-
       const params = new URLSearchParams();
       params.set('prefecture', prefecture);
-      const res2 = (await fetch('https://covid19-japan-web-api.now.sh/api/v1/positives?'
-        + params.toString())).json()
-      var result = await res2 as Covid.Positive[];
-      console.log(res2);
+      const result = await
+        (await fetch('https://covid19-japan-web-api.now.sh/api/v1/positives?'
+          + params.toString())
+        ).json() as Covid.Positive[];
+      console.log(result);
       commit.ADD_POSITIVES({ name: prefecture, positives: result });
-      return res2 as Promise<Covid.Positive[]>;
+      // return new Promise(() => {
+      //   return result;
+      // });
     }
   },
   getters: {
@@ -118,7 +121,6 @@ export const constantActionContext = (context: any) =>
   Context.moduleActionContext(context, testStore);
 export const constantRootContext = (context: any) =>
   Context.rootActionContext(context);
-
 export const constantGetterContext = (args: [CounterState, any, any, any]) => {
   return Context.moduleGetterContext(args, testStore);
 };

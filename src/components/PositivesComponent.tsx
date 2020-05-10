@@ -2,8 +2,15 @@ import * as TSX from "vue-tsx-support";
 import VuetifyMixin from "@/mixin/vuetify";
 import * as Covid from "@/Entity/Covid"
 
-export default TSX.componentFactory.mixin(VuetifyMixin).create({
+abstract class Events {
+  abstract onloading: (value: boolean) => void;
+  public static ON_LOADING_EVENT_NAME = "loading";
+}
+
+export default TSX.componentFactoryOf<Events>().mixin(VuetifyMixin).create({
   name: "PositivesComponent",
+  props: {
+  },
   components: {},
   async mounted() {
     await this.fetchData();
@@ -16,7 +23,14 @@ export default TSX.componentFactory.mixin(VuetifyMixin).create({
   },
   methods: {
     async fetchData() {
-      this.positives = await this.$store.direct.dispatch.Covid19ApiStore.getPositives(this.selectedPrefecture);
+      console.log(true);
+      this.$emit(Events.ON_LOADING_EVENT_NAME, true);
+      await this.$store.direct.dispatch.Covid19ApiStore.getPositives(this.selectedPrefecture);
+      this.positives = this.$store.direct.state.Covid19ApiStore.positivesLocalAchievements.find(e => e.name == this.selectedPrefecture)?.positives ?? [];
+      console.log(this.positives);
+
+      console.log(false);
+      this.$emit(Events.ON_LOADING_EVENT_NAME, false);
     }
   },
   render() {

@@ -20,7 +20,8 @@ export default TSX.componentFactory.mixin(VuetifyMixin).create({
         <div>this is {this.count2} @2</div>
         <div>this is {this.count3} @3</div>
         <div>this is {this.total.hospitalize} @3</div>
-        <PositivesComponent></PositivesComponent>
+        <PositivesComponent
+          onloading={(value: boolean) => { this.setModal(value) }} />
         <v-dialog
           v-model={this.showModal}
           // hide-overlay
@@ -114,6 +115,11 @@ export default TSX.componentFactory.mixin(VuetifyMixin).create({
     async fetchData() {
       await this.$store.direct.dispatch.Covid19ApiStore.fetchPrefectures();
       await this.$store.direct.dispatch.Covid19ApiStore.getTotal();
+    },
+    setModal(value: boolean) {
+      this.showModal = value;
+      console.log(value);
+
     }
   }
 });
