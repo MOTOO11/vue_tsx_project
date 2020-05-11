@@ -14,14 +14,36 @@ export default TSX.componentFactory.mixin(VuetifyMixin).create({
     }
     return (
       <div >
-        <h1 onClick={this.increment}>Increment</h1>
-        <h1 onClick={this.fetchData}>Fetch</h1>
+        <v-btn large color={"success"} onClick={this.increment}>Increment</v-btn>
+        <v-btn large color={"primary"} onClick={this.fetchData}>Fetch</v-btn>
         <div>this is {this.count} @1</div>
         <div>this is {this.logoSrcSvg} @2</div>
         <div>this is {this.count3} @3</div>
         <div>this is {this.total.hospitalize} @3</div>
-        <PositivesComponent
-          onloading={(value: boolean) => { this.showPositivesComponentModal = value }} />
+        <v-row>
+          <v-col cols="12" md="2">
+            <PositivesComponent
+              onloading={(value: boolean) => { this.showPositivesComponentModal = value }} />
+          </v-col></v-row>
+        <v-data-table dense
+          v-model={this.selected}
+          headers={this.headers}
+          items={this.prefecture}
+          item-key="id"
+          single-select={this.singleSelect}
+          show-select
+          class="elevation-1"
+        >
+          <template slot={"top"}>
+            <v-switch v-model={this.singleSelect} label="Single select" class="pl-3"></v-switch>
+          </template>
+        </v-data-table >
+        <div>
+          <ul>
+            <li>{list}</li>
+            {/* {this.message.map(e => <li>{`${e.id}: ${e.cases}`}</li>)} */}
+          </ul>
+        </div>
         <v-dialog
           v-model={this.integratedShowModal}
           // hide-overlay
@@ -42,25 +64,6 @@ export default TSX.componentFactory.mixin(VuetifyMixin).create({
             </v-card-text>
           </v-card>
         </v-dialog>
-        <v-data-table dense
-          v-model={this.selected}
-          headers={this.headers}
-          items={this.prefecture}
-          item-key="id"
-          single-select={this.singleSelect}
-          show-select
-          class="elevation-1"
-        >
-          <template slot={"top"}>
-            <v-switch v-model={this.singleSelect} label="Single select" class="pl-3"></v-switch>
-          </template>
-        </v-data-table >
-        <div>
-          <ul>
-            <li>{list}</li>
-            {/* {this.message.map(e => <li>{`${e.id}: ${e.cases}`}</li>)} */}
-          </ul>
-        </div>
       </div >
     );
   },
