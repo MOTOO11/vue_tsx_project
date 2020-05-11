@@ -21,9 +21,9 @@ export default TSX.componentFactory.mixin(VuetifyMixin).create({
         <div>this is {this.count3} @3</div>
         <div>this is {this.total.hospitalize} @3</div>
         <PositivesComponent
-          onloading={(value: boolean) => { this.setModal(value) }} />
+          onloading={(value: boolean) => { this.showPositivesComponentModal = value }} />
         <v-dialog
-          v-model={this.showModal}
+          v-model={this.integratedShowModal}
           // hide-overlay
           persistent
           width="300"
@@ -70,6 +70,7 @@ export default TSX.componentFactory.mixin(VuetifyMixin).create({
       selected: [],
       selectedPrefecture: "東京都",
       showModal: true,
+      showPositivesComponentModal: false,
       aaa: "about page",
       bbb: 1,
       headers: [
@@ -101,6 +102,9 @@ export default TSX.componentFactory.mixin(VuetifyMixin).create({
     },
     total() {
       return this.$store.direct.state.Covid19ApiStore.total;
+    },
+    integratedShowModal() {
+      return this.showModal || this.showPositivesComponentModal;
     }
   },
   async mounted() {
