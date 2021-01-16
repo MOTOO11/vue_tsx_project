@@ -2,21 +2,21 @@ import Vue from "vue";
 import * as TSX from "vue-tsx-support";
 import { ElementAttrs } from "vue-tsx-support/types/base";
 import { AnchorHTMLAttributes } from "vue-tsx-support/types/dom";
-import LogoSvg from "@/components/LogoSvg"
+import LogoSvg from "@/components/LogoSvg";
 import MyComponent from "@/components/MyComponent";
-import VuetifyMixin from "@/mixin/vuetify"
+import VuetifyMixin from "@/mixin/vuetify";
 
 export default TSX.componentFactory.mixin(VuetifyMixin).create({
   name: "HelloWorld",
   props: {
     msg: {
       type: String,
-      default: "",
-    },
+      default: ""
+    }
   },
   render() {
-    var ecosystemList: ElementAttrs<AnchorHTMLAttributes>[] = [];
-    this.ecosystem.forEach((e) => {
+    const ecosystemList: ElementAttrs<AnchorHTMLAttributes>[] = [];
+    this.ecosystem.forEach(e => {
       ecosystemList.push(
         <a key={e.href} href={e.href} class="subheading mx-3" target="_blank">
           ${e.text}
@@ -24,7 +24,7 @@ export default TSX.componentFactory.mixin(VuetifyMixin).create({
       );
     });
 
-    var whatsNextList: ElementAttrs<AnchorHTMLAttributes>[] = [];
+    const whatsNextList: ElementAttrs<AnchorHTMLAttributes>[] = [];
     this.whatsNext.forEach((e, index) => {
       whatsNextList.push(
         <a key={e.href} href={e.href} class="subheading mx-3" target="_blank">
@@ -33,7 +33,7 @@ export default TSX.componentFactory.mixin(VuetifyMixin).create({
       );
     });
 
-    var importantLinksList: ElementAttrs<AnchorHTMLAttributes>[] = [];
+    const importantLinksList: ElementAttrs<AnchorHTMLAttributes>[] = [];
     this.importantLinks.forEach((e, index) => {
       importantLinksList.push(
         <a key={e.href} href={e.href} class="subheading mx-3" target="_blank">
@@ -95,64 +95,63 @@ export default TSX.componentFactory.mixin(VuetifyMixin).create({
   computed: {
     counter() {
       return this.$store.direct.state.Covid19ApiStore.count;
-    },
+    }
   },
   methods: {
     increment() {
       this.$store.direct.dispatch.Covid19ApiStore.increment();
-    },
+    }
   },
   data: () => ({
     ecosystem: [
       {
         text: "vuetify-loader",
-        href: "https://github.com/vuetifyjs/vuetify-loader",
+        href: "https://github.com/vuetifyjs/vuetify-loader"
       },
       {
         text: "github",
-        href: "https://github.com/vuetifyjs/vuetify",
+        href: "https://github.com/vuetifyjs/vuetify"
       },
       {
         text: "awesome-vuetify",
-        href: "https://github.com/vuetifyjs/awesome-vuetify",
-      },
+        href: "https://github.com/vuetifyjs/awesome-vuetify"
+      }
     ],
     importantLinks: [
       {
         text: "Documentation",
-        href: "https://vuetifyjs.com",
+        href: "https://vuetifyjs.com"
       },
       {
         text: "Chat",
-        href: "https://community.vuetifyjs.com",
+        href: "https://community.vuetifyjs.com"
       },
       {
         text: "Made with Vuetify",
-        href: "https://madewithvuejs.com/vuetify",
+        href: "https://madewithvuejs.com/vuetify"
       },
       {
         text: "Twitter",
-        href: "https://twitter.com/vuetifyjs",
+        href: "https://twitter.com/vuetifyjs"
       },
       {
         text: "Articles",
-        href: "https://medium.com/vuetify",
-      },
+        href: "https://medium.com/vuetify"
+      }
     ],
     whatsNext: [
       {
         text: "Explore components",
-        href: "https://vuetifyjs.com/components/api-explorer",
+        href: "https://vuetifyjs.com/components/api-explorer"
       },
       {
         text: "Select a layout",
-        href: "https://vuetifyjs.com/layout/pre-defined",
+        href: "https://vuetifyjs.com/layout/pre-defined"
       },
       {
         text: "Frequently Asked Questions",
-        href:
-          "https://vuetifyjs.com/getting-started/frequently-asked-questions",
-      },
-    ],
-  }),
+        href: "https://vuetifyjs.com/getting-started/frequently-asked-questions"
+      }
+    ]
+  })
 });

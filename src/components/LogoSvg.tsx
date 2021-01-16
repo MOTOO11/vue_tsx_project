@@ -7,27 +7,28 @@ abstract class Events {
   public static ON_CLICK_EVENT_NAME = "click";
 }
 
-export default TSX.componentFactoryOf<Events>().mixin(vuetifyMixin).create({
-  name: "logoSvg",
-  components: {
-  },
-  render(): VNode {
-    return (
-      <v-img
-        src={this.logoSrc}
-        class="my-3"
-        contain
-        height="200"
-        gradient="to top right, rgba(100,115,201,.33), rgba(25,32,72,.7)"
-        onClick={() => {
-          this.$emit(Events.ON_CLICK_EVENT_NAME);
-        }}
-      />
-    );
-  },
-  computed: {
-    logoSrc(): String {
-      return this.$store.direct.getters.Covid19ApiStore.logoSrcSvg;
+export default TSX.componentFactoryOf<Events>()
+  .mixin(vuetifyMixin)
+  .create({
+    name: "logoSvg",
+    components: {},
+    render(): VNode {
+      return (
+        <v-img
+          src={this.logoSrc}
+          class="my-3"
+          contain
+          height="200"
+          gradient="to top right, rgba(100,115,201,.33), rgba(25,32,72,.7)"
+          onClick={() => {
+            this.$emit(Events.ON_CLICK_EVENT_NAME);
+          }}
+        />
+      );
     },
-  },
-});
+    computed: {
+      logoSrc(): string {
+        return this.$store.direct.getters.Covid19ApiStore.logoSrcSvg;
+      }
+    }
+  });

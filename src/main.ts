@@ -4,7 +4,7 @@ import router from "./router";
 import store from "./store";
 import vuetify from "./plugins/vuetify";
 
-import VuetifyMixin from "@/mixin/vuetify"
+import VuetifyMixin from "@/mixin/vuetify";
 // Vue.mixin(VuetifyMixin);
 
 Vue.config.productionTip = false;
@@ -13,5 +13,6 @@ new Vue({
   router,
   store: store.original,
   vuetify,
+  store,
   render: h => h(App)
 }).$mount("#app");

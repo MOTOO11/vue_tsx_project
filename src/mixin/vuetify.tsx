@@ -17,6 +17,11 @@ import {
   VCardText,
   VProgressLinear,
   VOverflowBtn,
+  VListItem,
+  VListItemTitle,
+  VListItemSubtitle,
+  VList,
+  VDivider
 } from "vuetify/lib";
 
 export default component({
@@ -37,6 +42,11 @@ export default component({
     "v-card": VCard,
     "v-card-text": VCardText,
     "v-progress-linear": VProgressLinear,
-    "v-overflow-btn": VOverflowBtn
-  },
+    "v-overflow-btn": VOverflowBtn,
+    "v-list": VList,
+    "v-list-item": VListItem,
+    "v-list-item-title": VListItemTitle,
+    "v-list-item-subtitle": VListItemSubtitle,
+    "v-divider": VDivider
+  }
 });

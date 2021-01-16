@@ -11,9 +11,9 @@ const {
   rootActionContext,
   moduleActionContext,
   rootGetterContext,
-  moduleGetterContext,
+  moduleGetterContext
 } = createDirectStore({
-  modules: { Covid19ApiStore: TestStore, Counter },
+  modules: { Covid19ApiStore: TestStore, Counter }
 });
 
 // Export the direct-store instead of the classic Vuex store.
@@ -25,7 +25,7 @@ export {
   rootActionContext,
   moduleActionContext,
   rootGetterContext,
-  moduleGetterContext,
+  moduleGetterContext
 };
 
 // The following lines enable types in the injected store '$store'.

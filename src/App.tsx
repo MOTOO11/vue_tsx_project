@@ -57,5 +57,5 @@ export default TSX.componentFactory.mixin(VuetifyMixin).create({
 
   data: () => ({
     //
-  }),
+  })
 });
